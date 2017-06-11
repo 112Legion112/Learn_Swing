@@ -1,6 +1,5 @@
 package ru.fearofcode;
 
-import com.sun.webkit.dom.KeyboardEventImpl;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -24,20 +23,19 @@ public class Player {
         this.d = d;
     }
     public void move(int angle){
-        switch (angle) {
-            case 0:
-                x += speed;
-                break;
-            case 90:
-                y -= speed;
-                break;
-            case 180:
-                x -= speed;
-                break;
-            case 270:
-                y += speed;
-                break;
-        }
+        // Work if press keyboard (A,W,D,S)
+        double fx,fy;
+        double rad = Math.toRadians(angle);
+        System.out.println("degrees = " + angle + " or radians = " + rad);
+        System.out.println("sin = " + Math.sin(rad) + " cos "+ Math.cos(rad));
+
+
+
+        fx = Math.cos(rad);
+        fy = Math.sin(rad);
+        //System.out.println("x = " + fx);
+        //System.out.println("y = " + fy);
+
     }
 
 
