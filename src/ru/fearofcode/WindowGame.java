@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 public class WindowGame extends JFrame {
-    static private int width = 400;
-    static private int height = 400;
+    static private int width = 600;
+    static private int height = 600;
     public WindowGame(){
         super("Window game");
 
@@ -18,63 +18,28 @@ public class WindowGame extends JFrame {
 
         setSize(width,height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
         setVisible(true);
 
-
-        while(true) {
-            panelGame.draw();
-        }
+        panelGame.runGame();
     }
 
 
-    class PanelGame extends JPanel {
+    class PanelGame extends JPanel implements Runnable{
         BufferedImage bufferedImage = new BufferedImage(WindowGame.width,WindowGame.height,BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics2D = (Graphics2D) bufferedImage.getGraphics();
         Player player = new Player(0,0,25);
-
-
+        Thread gameThread = new Thread(this);
 
         public PanelGame(int width, int height){
+
             setSize(new Dimension(width,height));
 
-            addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent e) {
-
-                }
-
-                @Override
-                public void keyPressed(KeyEvent e) {
-                    int keyCode = e.getKeyCode();
-                    int angle = 0;
-
-                    switch(keyCode){
-                        case KeyEvent.VK_D:
-                            angle = 0;
-                            break;
-                        case KeyEvent.VK_W:
-                            angle = 90;
-                            break;
-                        case KeyEvent.VK_A:
-                            angle = 180;
-                            break;
-                        case KeyEvent.VK_S:
-                            angle = 270;
-                            break;
-                    }
-
-
-                    player.move(angle);
-                }
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-
-                }
-            });
+            addKeyListener(new KeyBoard());
             setFocusable(true);
+        }
+
+        public void runGame(){
+            gameThread.run();
         }
 
         public void draw() {
@@ -87,6 +52,18 @@ public class WindowGame extends JFrame {
             Graphics graphics = getGraphics();
             graphics.drawImage(bufferedImage, 0, 0, null);
         }
-    }
 
+        @Override
+        public void run() {
+            while (true) {
+                player.move();
+                draw();
+                try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

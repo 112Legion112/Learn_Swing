@@ -22,12 +22,41 @@ public class Player {
         this.y = y;
         this.d = d;
     }
-    public void move(int angle){
-        // Work if press keyboard (A,W,D,S)
-        // Rounding of coordinate with error.
-        double rad = Math.toRadians(angle);
-        x += Math.cos(rad) * speed;
-        y -= Math.sin(rad) * speed;
+
+    public void move(){
+        if (KeyBoard.prassA || KeyBoard.prassW || KeyBoard.prassD || KeyBoard.prassS) {
+            int angle = 0;
+
+            if (KeyBoard.prassD) {
+                angle = 0;
+            }
+            if (KeyBoard.prassW) {
+                angle = 90;
+            }
+            if (KeyBoard.prassA) {
+                angle = 180;
+            }
+            if (KeyBoard.prassS) {
+                angle = 270;
+            }
+            if (KeyBoard.prassD && KeyBoard.prassW) {
+                angle = 45;
+            }
+            if (KeyBoard.prassW && KeyBoard.prassA) {
+                angle = 135;
+            }
+            if (KeyBoard.prassA && KeyBoard.prassS) {
+                angle = 225;
+            }
+            if (KeyBoard.prassS && KeyBoard.prassD) {
+                angle = 315;
+            }
+
+            // Rounding of coordinate with error.
+            double rad = Math.toRadians(angle);
+            x += Math.cos(rad) * speed;
+            y -= Math.sin(rad) * speed;
+        }
     }
 
 
