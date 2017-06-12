@@ -2,9 +2,6 @@ package ru.fearofcode;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 public class WindowGame extends JFrame {
@@ -35,6 +32,7 @@ public class WindowGame extends JFrame {
             setSize(new Dimension(width,height));
 
             addKeyListener(new KeyBoard());
+            addMouseListener(new Mouse());
             setFocusable(true);
         }
 
@@ -56,7 +54,8 @@ public class WindowGame extends JFrame {
         @Override
         public void run() {
             while (true) {
-                player.move();
+                player.updata();
+
                 draw();
                 try {
                     Thread.sleep(16);
