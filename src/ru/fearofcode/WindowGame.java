@@ -65,6 +65,7 @@ public class WindowGame extends JFrame {
                             break;
                     }
 
+
                     player.move(angle);
                 }
 

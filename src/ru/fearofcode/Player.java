@@ -24,18 +24,10 @@ public class Player {
     }
     public void move(int angle){
         // Work if press keyboard (A,W,D,S)
-        double fx,fy;
+        // Rounding of coordinate with error.
         double rad = Math.toRadians(angle);
-        System.out.println("degrees = " + angle + " or radians = " + rad);
-        System.out.println("sin = " + Math.sin(rad) + " cos "+ Math.cos(rad));
-
-
-
-        fx = Math.cos(rad);
-        fy = Math.sin(rad);
-        //System.out.println("x = " + fx);
-        //System.out.println("y = " + fy);
-
+        x += Math.cos(rad) * speed;
+        y -= Math.sin(rad) * speed;
     }
 
 
