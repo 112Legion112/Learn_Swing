@@ -13,12 +13,12 @@ public class Player extends Point{
     private Color color = Color.red;
 
     public Player(double x, double y, int d){
-        super(x,y,iterator);
+        super(x,y);
         this.d = d;
     }
 
     @Override
-    public void update(ListIterator<Point> iterator){
+    public void update(){
         move();
         shot();
     }

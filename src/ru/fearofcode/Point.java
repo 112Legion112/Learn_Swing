@@ -17,12 +17,14 @@ abstract public class Point {
     private Color color;
 
     /**
-     * It is impotent add link this object in class {@link PanelGame}
+     * It is important add link this object in class {@link PanelGame}
      * @param x coordinate where be create object.
      * @param y coordinate where be create object.
      */
-    public Point(double x, double y, ListIterator<Point> iterator){
-        iterator.add(this);
+    public Point(double x, double y){
+        this.x = x;
+        this.y = y;
+        PanelGame.createPoint(this);
     }
 
     /**
@@ -30,7 +32,7 @@ abstract public class Point {
      * It is callback method, it method have to called the class {@link PanelGame}.
      * The Link have to gave for the class at time create in constructor.
      */
-    abstract public void update(ListIterator<Point> iterator);
+    abstract public void update();
 
     /**
      * This method drawing view object.
