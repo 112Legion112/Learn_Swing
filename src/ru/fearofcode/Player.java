@@ -2,35 +2,25 @@ package ru.fearofcode;
 
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * Created by maks on 6/11/2017.
  */
-public class Player {
-    private double x;
-    private double y;
+public class Player extends Point{
     private int d;
     private double speed = 5;
-
-    private LinkedList<Bullet> bulletList  = new LinkedList<>();
-
     private Color color = Color.red;
 
     public Player(double x, double y, int d){
-        this.x = x;
-        this.y = y;
+        super(x,y,iterator);
         this.d = d;
     }
 
-    public void updata(){
+    @Override
+    public void update(ListIterator<Point> iterator){
         move();
         shot();
-
-        for(Bullet bullet : bulletList){
-            bullet.updata();
-            System.out.println("Draw SHOT");
-        }
     }
 
     private void move(){
@@ -71,19 +61,16 @@ public class Player {
 
     private void shot(){
         if (Mouse.pressLeft) {
-            Bullet bullet = new Bullet(x,y,Mouse.xMouse,Mouse.yMouse);
-            bulletList.add(bullet);
+
+            new Bullet(x,y,Mouse.xMouse,Mouse.yMouse);
+
         }
     }
 
+    @Override
     public void draw(Graphics2D g){
         g.setColor(color);
         g.fillOval((int)x,(int)y,d,d);
-
-        for(Bullet bullet : bulletList){
-            bullet.draw(g);
-            System.out.println("Draw SHOT");
-        }
     }
 
 }

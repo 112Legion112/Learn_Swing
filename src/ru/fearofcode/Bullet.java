@@ -5,19 +5,18 @@ import java.awt.*;
 /**
  * Created by maks on 6/12/2017.
  */
-public class Bullet {
-    private double x;
-    private double y;
-    private double speed = 2;
+public class Bullet extends Point{
+    private double speed = 10;
     private int d = 20;
     private int angle;
 
     public Bullet(double x, double y, double goalX, double goalY){
-        this.x = x;
-        this.y = y;
+        super(x,y);
         angle = Angle.pointDerection(x,y,goalX,goalY);
     }
-    public void updata(){
+
+    @Override
+    public void update(){
         move();
     }
 
@@ -27,6 +26,7 @@ public class Bullet {
         y -=Math.sin(rad) * speed;
     }
 
+    @Override
     public void draw(Graphics2D g){
         g.setColor(Color.yellow);
         g.fillOval((int)x,(int)y,d,d);
