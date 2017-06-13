@@ -14,12 +14,12 @@ class PanelGame extends JPanel implements Runnable{
     private BufferedImage bufferedImage = new BufferedImage(WindowGame.WIDTH,WindowGame.HEIGHT,BufferedImage.TYPE_INT_RGB);
     private Graphics2D graphics2D = (Graphics2D) bufferedImage.getGraphics();
 
-    Thread gameThread = new Thread(this);
+    private Thread gameThread = new Thread(this);
 
     static private Queue<Point> createPoints = new LinkedList<>();
     static private LinkedList<Point> points = new LinkedList<>();
 
-    Player player = new Player(0,0,25);
+    private Player player = new Player(0,0,25);
 
 
     public PanelGame(int width, int height){

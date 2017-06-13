@@ -61,9 +61,7 @@ public class Player extends Point{
 
     private void shot(){
         if (Mouse.pressLeft) {
-
             new Bullet(x,y,Mouse.xMouse,Mouse.yMouse);
-
         }
     }
 
