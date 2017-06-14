@@ -10,7 +10,7 @@ import java.util.ListIterator;
 public class Player extends Point{
     private int d;
     private double speed = 5;
-    private Color color = Color.red;
+    private Color color = Color.RED;
 
     public Player(double x, double y, int d){
         super(x,y);

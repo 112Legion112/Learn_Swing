@@ -17,7 +17,6 @@ public class Mouse extends MouseAdapter{
     public void mouseClicked(MouseEvent e){
         switch(e.getButton()){
             case MouseEvent.BUTTON3:
-                new Enemy(e.getX(),e.getY());
                 break;
         }
     }
@@ -29,6 +28,9 @@ public class Mouse extends MouseAdapter{
                 pressLeft = true;
                 xMouse = e.getX();
                 yMouse = e.getY();
+                break;
+            case MouseEvent.BUTTON3:
+                new Enemy(e.getX(),e.getY());
                 break;
         }
 
