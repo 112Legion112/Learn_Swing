@@ -30,7 +30,6 @@ public class Mouse extends MouseAdapter{
                 yMouse = e.getY();
                 break;
             case MouseEvent.BUTTON3:
-                new Enemy(e.getX(),e.getY());
                 break;
         }
 

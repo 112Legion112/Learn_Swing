@@ -14,6 +14,7 @@ import java.util.Queue;
  */
 public class Engine implements Runnable {
     final static private Queue<Point> createPoints = new LinkedList<>();
+    final static private Queue<Point> destroyPoints = new LinkedList<>();
     final static private LinkedList<Point> points = new LinkedList<>();
 
     final private BufferedImage bufferedImage = new BufferedImage(Game.WIDTH,Game.HEIGHT,BufferedImage.TYPE_INT_RGB);
@@ -21,8 +22,9 @@ public class Engine implements Runnable {
 
 
     final private PanelGame panelGame;
+    private Graphics graphics;
 
-    final private Player player = new Player(0,0,25);
+    final private Player PLAYER = new Player(0,0);
 
     public Engine(PanelGame panelGame){
         this.panelGame = panelGame;
@@ -44,18 +46,31 @@ public class Engine implements Runnable {
     static public void createPoint(Point point){
         createPoints.add(point);
     }
+    static public void destroyPoints(Point point){
+        destroyPoints.add(point);
+    }
+
     static private void update(){
         //Add object of create in list points
         int sizeQueue = createPoints.size();
         for(int i = 0; i < sizeQueue; i++){
             Point point = createPoints.remove();
-            points.add(point);
+            //points.add(point);
+            points.addFirst(point);
         }
 
+        System.out.println(points.size());
         ListIterator<Point> iterator = points.listIterator();
         while(iterator.hasNext()){
             Point point = iterator.next();
             point.update();
+        }
+
+        //Remove object of destroy in list points
+        sizeQueue = destroyPoints.size();
+        for(int i = 0; i < sizeQueue; i++){
+            Point point = destroyPoints.remove();
+            points.remove(point);
         }
     }
 
@@ -67,7 +82,9 @@ public class Engine implements Runnable {
         for(Point point : points){
             point.draw(graphics2D);
         }
-        Graphics graphics = panelGame.getGraphics();
+        new Enemy(Math.random() * Game.WIDTH, Math.random() * Game.HEIGHT,PLAYER);
+
+        graphics = panelGame.getGraphics();
         graphics.drawImage(bufferedImage, 0, 0, null);
     }
 }

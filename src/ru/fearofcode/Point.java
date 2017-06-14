@@ -12,8 +12,17 @@ import java.util.ListIterator;
  */
 
 abstract public class Point {
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
     protected double x;
     protected double y;
+    protected double d;
     private Color color;
 
     /**
@@ -21,12 +30,20 @@ abstract public class Point {
      * @param x coordinate where be create object.
      * @param y coordinate where be create object.
      */
-    public Point(double x, double y){
+    public Point(double x, double y, double d){
         this.x = x;
         this.y = y;
+        this.d = d;
         Engine.createPoint(this);
     }
 
+    public void destroy(){
+        Engine.destroyPoints(this);
+    }
+
+    public void eat(){
+        d+=0.1;
+    }
     /**
      * This method updating data such as x and y coordinate and other data.
      * It is callback method, it method have to called the class {@link Engine}.

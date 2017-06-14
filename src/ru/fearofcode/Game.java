@@ -13,7 +13,7 @@ public class Game{
     final static public int HEIGHT = 600;
 
     final private static WindowGame windowGame = new WindowGame();
-    private static PanelGame panelGame = new PanelGame(WIDTH,HEIGHT);
+    final private static PanelGame panelGame = new PanelGame(WIDTH,HEIGHT);
 
     final private static Engine ENGINE = new Engine(panelGame);
     final private static Thread gameThread = new Thread(ENGINE);

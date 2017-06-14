@@ -8,13 +8,11 @@ import java.util.ListIterator;
  * Created by maks on 6/11/2017.
  */
 public class Player extends Point{
-    private int d;
     private double speed = 5;
     private Color color = Color.RED;
 
-    public Player(double x, double y, int d){
-        super(x,y);
-        this.d = d;
+    public Player(double x, double y){
+        super(x,y,20);
     }
 
     @Override
@@ -22,6 +20,7 @@ public class Player extends Point{
         move();
         shot();
     }
+
 
     private void move(){
         if (KeyBoard.prassA || KeyBoard.prassW || KeyBoard.prassD || KeyBoard.prassS) {
@@ -68,7 +67,7 @@ public class Player extends Point{
     @Override
     public void draw(Graphics2D g){
         g.setColor(color);
-        g.fillOval((int)x,(int)y,d,d);
+        g.fillOval((int)(x - d/2),(int)(y - d/2),(int)d,(int)d);
     }
 
 }
